@@ -17,6 +17,12 @@ public class Program2 {
 
         System.out.println("=== TEST 2: department findById ===");
         System.out.println(departmentDao.findById(1));
+
+        System.out.println("=== TEST 3: department update ===");
+        Department department = departmentDao.findById(8);
+        department.setName("Tools");
+        departmentDao.update(department);
+        System.out.println("Update completed!");
     }
 
 }
