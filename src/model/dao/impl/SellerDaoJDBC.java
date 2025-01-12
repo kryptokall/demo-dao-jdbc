@@ -85,7 +85,23 @@ public class SellerDaoJDBC implements SellerDao {
 
     @Override
     public void deleteById(Integer id) {
+        PreparedStatement st = null;
+        try {
+            st = conn.prepareStatement("DELETE FROM seller WHERE Id = ?");
 
+            st.setInt(1, id);
+
+            int affectedRows = st.executeUpdate();
+            if (affectedRows == 0) {
+                throw new DbException("Nobody was deleted: Seller does not exist!");
+            }
+        }
+        catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }
+        finally {
+            DB.closeStatement(st);
+        }
     }
 
     @Override
@@ -105,8 +121,9 @@ public class SellerDaoJDBC implements SellerDao {
             if (rs.next()) {
                 Department dep = instantiateDepartment(rs);
                 return instantiateSeller(rs, dep);
+            } else {
+                throw new DbException("Error: Seller does not exist!");
             }
-            return null;
         }
         catch (SQLException e) {
             throw new DbException(e.getMessage());
