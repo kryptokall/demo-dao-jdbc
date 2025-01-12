@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-public class Main {
+public class Program {
 
     public static void main(String[] args) {
 
@@ -17,7 +17,7 @@ public class Main {
 
         SellerDao sellerDao = DaoFactory.createSellerDao();
 
-        System.out.println("=== TEST 1: seller findById ===");
+        System.out.println("\n=== TEST 1: seller findById ===");
         System.out.println(sellerDao.findById(1));
 
         System.out.println("\n=== TEST 2: seller findByDepartment ===");
