@@ -14,6 +14,9 @@ public class Program2 {
         Department newDepartment = new Department(null, "Games");
         departmentDao.insert(newDepartment);
         System.out.println("Department inserted successfully! New id: " + newDepartment.getId());
+
+        System.out.println("=== TEST 2: department findById ===");
+        System.out.println(departmentDao.findById(1));
     }
 
 }
